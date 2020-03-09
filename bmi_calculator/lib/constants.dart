@@ -5,7 +5,7 @@ const kLabelTextStyle = TextStyle(
   color: Color(0xFF8D8E98),
 );
 
-const kHeightValueTextStyle = TextStyle(
+const kNumberTextStyle = TextStyle(
     fontSize: 50,
     fontWeight: FontWeight.w900
 );
@@ -18,3 +18,5 @@ const kSliderActiveColor = Color(0xFFFFFFFF);
 const kSliderInactiveColor = Color(0xFF8D8E98);
 const kSliderThumbColor = Color(0xFFEB1555);
 const kSliderOverlayColor = Color(0x29EB1555);
+const kButtonBackgroundColor = Color(0xFF4C4F5E);
+const kButtonForegroundColor = Colors.white;

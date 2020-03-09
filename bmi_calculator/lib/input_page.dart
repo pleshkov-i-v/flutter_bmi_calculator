@@ -13,6 +13,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender _activeCard;
   int _height = 180;
+  int weight = 60;
+  int age = 18;
 
   Color _getCardColor(Gender cardIndex) {
     return cardIndex == _activeCard ? kActiveCardColor : kInActiveCardColor;
@@ -78,7 +80,7 @@ class _InputPageState extends State<InputPage> {
                     children: <Widget>[
                       Text(
                         _height.toString(),
-                        style: kHeightValueTextStyle,
+                        style: kNumberTextStyle,
                       ),
                       Text(
                         'cm',
@@ -118,11 +120,79 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -142,8 +212,38 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
+      floatingActionButton: Container(
+        child: FloatingActionButton(
+          child: Icon(Icons.equalizer),
+          backgroundColor: kSliderThumbColor,
+        ),
+        padding: EdgeInsets.only(bottom: 60.0),
+      ),
     );
   }
 }
 
 enum Gender { male, female }
+
+class RoundIconButton extends StatelessWidget {
+  final IconData iconData;
+  final Function onPress;
+  RoundIconButton({
+    @required this.iconData,
+    @required this.onPress});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      shape: CircleBorder(),
+      fillColor: kButtonBackgroundColor,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      child: Icon(iconData),
+      elevation: 0.0,
+      onPressed: onPress,
+    );
+  }
+}
